@@ -11,32 +11,26 @@ export function Menu() {
                     <span className="font-bold text-brand-500">plant</span>
                     store
                 </h1>
-                <ul className="flex gap-10 mt-2">
-                    <li>
-                        <a
-                            className="hover:text-brand-300 transition-all"
-                            href="/"
-                        >
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            className="hover:text-brand-300 transition-all"
-                            href="/about"
-                        >
-                            Produtos
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            className="hover:text-brand-300 transition-all"
-                            href="/about"
-                        >
-                            Contato
-                        </a>
-                    </li>
-                </ul>
+                <nav className="flex gap-10 mt-2">
+                    <a
+                        className="hover:text-brand-300 transition-all"
+                        href="/"
+                    >
+                        Home
+                    </a>
+                    <a
+                        className="hover:text-brand-300 transition-all"
+                        href="/about"
+                    >
+                        Produtos
+                    </a>
+                    <a
+                        className="hover:text-brand-300 transition-all"
+                        href="/about"
+                    >
+                        Contato
+                    </a>
+                </nav>
             </div>
             <div className="flex gap-10">
                 <CircleUser />
