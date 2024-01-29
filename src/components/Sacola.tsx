@@ -9,12 +9,30 @@ import {
 } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SacolaEmpty } from "./SacolaEmpty";
+import { CardProdutoSacola } from "./CardProdutoSacola";
+import { itemSacolaType } from "@/types";
 
-type SacolaProps = {
-    items: any[];
+interface SacolaProps {
+    itens_sacola: itemSacolaType[];
+    setSacola: Function;
 };
 
-export function Sacola({ items }: SacolaProps) {
+export function Sacola({ itens_sacola, setSacola }: SacolaProps) {
+
+
+    function changeQuantity(id: string, quantity: number): void {
+        if (quantity < 1) {
+            return;
+        }
+        const newSacola = itens_sacola.map((item) => {
+            if (item.id === id) {
+                return { ...item, quantity: quantity };
+            }
+            return item;
+        });
+        setSacola(newSacola);
+    }
+
     return (
         <Sheet>
             <SheetTrigger>
@@ -24,21 +42,20 @@ export function Sacola({ items }: SacolaProps) {
                 <SheetHeader>
                     <SheetTitle>Seu carrinho</SheetTitle>
                     <SheetDescription>
-                        {items.length > 0
-                            ? items.length.toString() + " produtos"
+                        {itens_sacola.length > 0
+                            ? itens_sacola.length.toString() + " produtos"
                             : "Sem produto"}
                     </SheetDescription>
-
-                    {items.length > 0 ? (
-                        <ScrollArea className=" h-svh w-full pt-4 top-1">
-                            {items.map((item) => (
-                                <p>{item}</p>
-                            ))}
-                        </ScrollArea>
-                    ) : (
-                        <SacolaEmpty />
-                    )}
                 </SheetHeader>
+                {itens_sacola.length > 0 ? (
+                    <ScrollArea className="h-svh w-full pt-4 top-1">
+                        {itens_sacola.map((item) => (
+                            <CardProdutoSacola info={item} changeQuantity={changeQuantity}/>
+                        ))}
+                    </ScrollArea>
+                ) : (
+                    <SacolaEmpty />
+                )}
             </SheetContent>
         </Sheet>
     );

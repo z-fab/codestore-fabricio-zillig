@@ -1,9 +1,8 @@
 import { CircleUser } from "lucide-react";
 import { Sacola } from "./Sacola";
+import { itemSacolaType } from "../types";
 
-const items_sacola: any[] = Array(0).fill("Item");
-
-export function Menu() {
+export function Menu(props: { sacola: itemSacolaType[], setSacola: Function}) {
     return (
         <nav className="flex justify-between items-center h-28 px-8">
             <div className="flex items-center gap-20 justify-start">
@@ -34,7 +33,7 @@ export function Menu() {
             </div>
             <div className="flex gap-10">
                 <CircleUser />
-                <Sacola items={items_sacola} />
+                <Sacola itens_sacola={props.sacola} setSacola={props.setSacola}/>
             </div>
         </nav>
     );

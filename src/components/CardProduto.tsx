@@ -1,6 +1,7 @@
+import { itemType } from "@/types";
 import { Leaf, ShoppingBag} from "lucide-react";
 
-export function CardProduto(){
+export function CardProduto({info, addSacola}: {info: itemType, addSacola: Function}){
     return (
         <div className="w-72 min-w-64 rounded-xl overflow-hidden shadow-xl p-4">
 
@@ -11,10 +12,10 @@ export function CardProduto(){
             <div className="flex mt-4 px-1 justify-between">
                 <div className="flex flex-col mb-2">
                     <p className="font-bold text-base ">
-                        Espada de São Jorge
+                        {info.product_name}
                     </p>
                     <p className="text-gray-400 text-xs italic">
-                        Dracaena trifasciata
+                        {info.sub_name}
                     </p>
                 </div>
                 <div className="flex items-center">
@@ -23,14 +24,14 @@ export function CardProduto(){
                 </div>
             </div>
             <div className="px-1 py-4">
-                <p className="text-xl font-bold text-gray-700">R$ 59,90</p>
+                <p className="text-xl font-bold text-gray-700">R$ {info.price.toFixed(2).replace('.', ',')}</p>
             </div>
             
             <div className="px-1 flex justify-between gap-2">
                 <button className="flex items-center justify-center border-2 rounded flex-1 h-10 bg-brand-300 border-none text-sm text-white hover:bg-brand-700 transition-all">
                     Ver Detalhes
                 </button>
-                <button className="flex items-center justify-center border rounded w-12 border-brand-300 text-brand-500 hover:bg-brand-700 hover:text-white hover:border-brand-700 transition-all">
+                <button onClick={() => addSacola(info.id)} className="flex items-center justify-center border rounded w-12 border-brand-300 text-brand-500 hover:bg-brand-700 hover:text-white hover:border-brand-700 transition-all">
                     <ShoppingBag className="w-5"/>
                 </button>
             </div>
