@@ -5,7 +5,7 @@ export function CardProduto({info, addSacola}: {info: itemType, addSacola: Funct
     return (
         <div className="w-72 min-w-64 rounded-xl overflow-hidden shadow-xl p-4">
 
-            <div className="h-200 overflow-hidden rounded-lg">
+            <div className="h-48 overflow-hidden rounded-lg">
                 <img className="w-full object-cover object-center" src="https://images.unsplash.com/photo-1509423350716-97f9360b4e09?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Imagem do Produto" style={{ height: "200px" }} />
             </div>
 

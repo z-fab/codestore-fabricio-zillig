@@ -21,20 +21,24 @@ export function Sacola({ itens_sacola, setSacola }: SacolaProps) {
 
 
     function changeQuantity(id: string, quantity: number): void {
+        let newSacola:itemSacolaType[] = [];
         if (quantity < 1) {
-            return;
+            newSacola = itens_sacola.filter((item) => {
+                return item.id !== id;
+            });
+        } else {
+            newSacola = itens_sacola.map((item) => {
+                if (item.id === id) {
+                    return { ...item, quantity: quantity };
+                }
+                return item;
+            });
         }
-        const newSacola = itens_sacola.map((item) => {
-            if (item.id === id) {
-                return { ...item, quantity: quantity };
-            }
-            return item;
-        });
         setSacola(newSacola);
     }
 
     return (
-        <Sheet>
+        <Sheet onOpenChange={() => console.log('a')}>
             <SheetTrigger>
                 <ShoppingBag />
             </SheetTrigger>

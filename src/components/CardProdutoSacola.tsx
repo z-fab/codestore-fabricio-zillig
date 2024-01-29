@@ -1,5 +1,5 @@
 import { itemSacolaType } from "../types";
-import {Minus, Plus} from "lucide-react";
+import {Axe, Minus, Plus, Trash} from "lucide-react";
 
 export function CardProdutoSacola({info, changeQuantity}: {info: itemSacolaType, changeQuantity: Function}){
     return (
@@ -17,13 +17,20 @@ export function CardProdutoSacola({info, changeQuantity}: {info: itemSacolaType,
                         {info.sub_name}
                     </p>
                     <div className="flex flex-row items-center">
-                        <div className="flex flex-row bg-stone-100 text-xs py-1 rounded-md items-center mt-2">
-                            <button className="px-3" onClick={() => changeQuantity(info.id, info.quantity+1)}>
-                                <Plus width={12}/>
-                            </button>
-                            <p className="px-2">{info.quantity}</p>
-                            <button className="px-3" onClick={() => changeQuantity(info.id, info.quantity-1)}>
+                        <div className="flex flex-row bg-stone-100 text-xs p-1 rounded-md items-center mt-2">
+                            {info.quantity > 1 ? (
+                            <button className="px-2 hover:bg-stone-200 rounded" onClick={() => changeQuantity(info.id, info.quantity-1)}>
                                 <Minus width={12}/>
+                            </button>
+                            ) : (
+                            <button className="px-2 hover:bg-red-500 hover:text-red-100 rounded" onClick={() => changeQuantity(info.id, 0)}>
+                                <Trash width={12}/>
+                            </button>                               
+                            )}
+
+                            <p className="px-4">{info.quantity}</p>
+                            <button className="px-2 hover:bg-stone-200 rounded" onClick={() => changeQuantity(info.id, info.quantity+1)}>
+                                <Plus width={12}/>
                             </button>
                         </div>
                     </div>
@@ -32,7 +39,7 @@ export function CardProdutoSacola({info, changeQuantity}: {info: itemSacolaType,
             </div>
             
             <div className="flex justify-center items-center w-1/3 border-l">
-                <p className="text-sm font-bold text-gray-700">R$ 59,90</p> 
+                <p className="text-sm font-bold text-gray-700">R$ {(info.price*info.quantity).toFixed(2).replace('.', ',')}</p> 
             </div>
         </div>
     )
