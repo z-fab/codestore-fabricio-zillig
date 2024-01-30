@@ -33,7 +33,15 @@ export function Menu(props: { sacola: itemSacolaType[], setSacola: Function}) {
             </div>
             <div className="flex gap-10">
                 <CircleUser />
-                <Sacola itens_sacola={props.sacola} setSacola={props.setSacola}/>
+                <div className="relative">
+                    <Sacola itens_sacola={props.sacola} setSacola={props.setSacola}/>
+                    {props.sacola.length > 0 ? (
+                        <div className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-brand-500 text-white w-5 h-5 text-sm rounded-full flex items-center justify-center focus:outline-none">
+                            {props.sacola.length}
+                        </div>
+                    ) : (<></>)}
+                    
+                </div>
             </div>
         </nav>
     );

@@ -38,7 +38,7 @@ export function Sacola({ itens_sacola, setSacola }: SacolaProps) {
     }
 
     return (
-        <Sheet onOpenChange={() => console.log('a')}>
+        <Sheet>
             <SheetTrigger>
                 <ShoppingBag />
             </SheetTrigger>
@@ -54,7 +54,7 @@ export function Sacola({ itens_sacola, setSacola }: SacolaProps) {
                 {itens_sacola.length > 0 ? (
                     <ScrollArea className="h-svh w-full pt-4 top-1">
                         {itens_sacola.map((item) => (
-                            <CardProdutoSacola info={item} changeQuantity={changeQuantity}/>
+                            <CardProdutoSacola key={item.id} info={item} changeQuantity={changeQuantity}/>
                         ))}
                     </ScrollArea>
                 ) : (
