@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
  
+@layer utilities {
+  .h-screen-minus-header {
+    height: calc(100vh - 150px);
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

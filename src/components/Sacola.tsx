@@ -14,7 +14,7 @@ import { useContext } from "react";
 import { sacolaContext } from "@/contexts/SacolaContexts";
 
 export function Sacola() {
-   const { sacola, changeQuantity } = useContext(sacolaContext);
+   const { sacola } = useContext(sacolaContext);
 
    return (
       <Sheet>
@@ -23,7 +23,7 @@ export function Sacola() {
          </SheetTrigger>
          <SheetContent>
             <SheetHeader>
-               <SheetTitle>Seu carrinho</SheetTitle>
+               <SheetTitle>Sua Sacola (biodegradável)</SheetTitle>
                <SheetDescription>
                   {sacola.length > 0
                      ? sacola.length.toString() + " produtos"

@@ -12,7 +12,7 @@ export interface itemSacolaType {
 
 interface SacolaContextType {
    sacola: itemSacolaType[];
-   addSacola: (id: string) => void;
+   addSacola: (id: string, qtdAdd?: number) => void;
    changeQuantity: (id: string, quantity: number) => void;
 }
 
@@ -26,12 +26,11 @@ export function SacolaProvider({ children }: SacolaProviderProps) {
    const { products } = useContext(ProductsContext);
    const [sacola, setSacola] = useState<itemSacolaType[]>([]);
 
-   function addSacola(id: string): void {
-      console.log(id);
+   function addSacola(id: string, qtdAdd?: number): void {
       if (sacola.find((item) => item.id === id)) {
          let newSacola = sacola.map((item) => {
             if (item.id === id) {
-               return { ...item, quantity: item.quantity + 1 };
+               return { ...item, quantity: item.quantity + (qtdAdd || 1) };
             }
             return item;
          });
@@ -39,7 +38,7 @@ export function SacolaProvider({ children }: SacolaProviderProps) {
       } else {
          products.map((product: ProductType) => {
             if (product.id === id) {
-               setSacola([...sacola, { ...product, quantity: 1 }]);
+               setSacola([...sacola, { ...product, quantity: qtdAdd || 1 }]);
             }
          });
       }
